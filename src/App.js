@@ -41,17 +41,17 @@ function App() {
   }
 
   return (
-    <>
+    <div>
       <input type='text' placeholder='Search for countries...' value={searchText} onChange={handleSearch}/>
-    <div className='container'>
-      {flags.map((data, idx) => <div key={idx}>
-        <div className='card'>
-          <img className='image' src={data.flags.png} alt={`Flag of ${data.name.common}`} />
-          <div className='country-name'>{data.region}</div>
-        </div>
-        </div>)}
+      <div className='container'>
+        {flags.map((data, idx) =>
+          <div key={idx} className='card'>
+            <img className='image' src={data.flags.png} alt={`Flag of ${data.name.common}`} />
+            <div className='country-name'>{data.region}</div>
+          </div>
+        )}
+      </div>
     </div>
-    </>
   );
 }
 
