@@ -35,14 +35,14 @@ function App() {
         return data.region.toLowerCase().includes(searchText.toLowerCase());
       })
       setFlags(filterFlags);
-    },1000);
-    
+    },0);
+
     setTimerId(timer);
   }
 
   return (
     <>
-      <input type='text' placeholder='Type to Search' value={searchText} onChange={handleSearch}/>
+      <input type='text' placeholder='Search for countries...' value={searchText} onChange={handleSearch}/>
     <div className='container'>
       {flags.map((data, idx) => <div key={idx}>
         <div className='card'>
