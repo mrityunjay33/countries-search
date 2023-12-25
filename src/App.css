@@ -12,11 +12,11 @@
   height: 150px;
   width: 150px;
   margin: 5px;
+  display: flex;
+  flex-direction: column;
 }
 .card-content{
   margin: 10px 25px;
-  display: flex;
-  flex-direction: column;
 }
 .image{
   height: 100px;
