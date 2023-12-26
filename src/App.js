@@ -16,7 +16,7 @@ function App() {
     try{
       const res = await fetch('https://restcountries.com/v3.1/all');
       const data = await res.json();
-      console.log(data);
+      // console.log(data);
       setFlags(data);
       setFlagsAllData(data);
     }
