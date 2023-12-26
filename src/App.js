@@ -16,6 +16,7 @@ function App() {
     try{
       const res = await fetch('https://restcountries.com/v3.1/all');
       const data = await res.json();
+      console.log(data);
       setFlags(data);
       setFlagsAllData(data);
     }
@@ -32,7 +33,7 @@ function App() {
 
     const timer = setTimeout(()=>{
       const filterFlags  = flagsAllData.filter((data) => {
-        return data.region.toLowerCase().includes(searchText.toLowerCase());
+        return data.name.common.toLowerCase().includes(searchText.toLowerCase());
       })
       setFlags(filterFlags);
     },0);
@@ -47,7 +48,7 @@ function App() {
         {flags.map((data, idx) =>
           <div key={idx} className='card'>
             <img className='image' src={data.flags.png} alt={`Flag of ${data.name.common}`} />
-            <div className='country-name'>{data.region}</div>
+            <div className='country-name'>{data.name.common}</div>
           </div>
         )}
       </div>
