@@ -1,61 +1,54 @@
+import React, { useState, useEffect } from 'react';
 import './App.css';
-import { useEffect, useState } from 'react';
 
-function App() {
+const App = () => {
+  const [countries, setCountries] = useState([]);
+  const [searchTerm, setSearchTerm] = useState('');
 
-  const [flags, setFlags] = useState([]);
-  const [flagsAllData, setFlagsAllData] = useState([]);
-  const [searchText, setSearchText] = useState('');
-  const [timerId, setTimerId] = useState(null);
+  useEffect(() => {
+    const fetchCountries = async () => {
+      try {
+        const response = await fetch('https://restcountries.com/v3.1/all');
+        if (!response.ok) {
+          throw new Error('Failed to fetch data');
+        }
+        const data = await response.json();
+        setCountries(data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
 
-  useEffect(()=>{
-    fetchData();
+    fetchCountries();
   }, []);
 
-  const fetchData = async () => {
-    try{
-      const res = await fetch('https://restcountries.com/v3.1/all');
-      const data = await res.json();
-      // console.log(data);
-      setFlags(data);
-      setFlagsAllData(data);
-    }
-    catch(err){
-      console.log(err);
-      return [];
-    }
-  }
-
   const handleSearch = (e) => {
-    const searchText = e.target.value;
-    setSearchText(searchText);
-    if(timerId) clearTimeout(timerId);
+    setSearchTerm(e.target.value);
+  };
 
-    const timer = setTimeout(()=>{
-      const filterFlags  = flagsAllData.filter((data) => {
-        return data.name.common.toLowerCase().includes(searchText.toLowerCase());
-      })
-      setFlags(filterFlags);
-    },0);
-
-    setTimerId(timer);
-  }
+  const filteredCountries = countries.filter((country) =>
+    country.name.common.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   return (
-    <div>
-      <input type='text' placeholder='Search for countries...' value={searchText} onChange={handleSearch}/>
-      <div className='container'>
-        {flags.map((data, idx) =>
-          <div key={idx} className='card'>
-            <div>
-              <img className='image' src={data.flags.svg} alt={`Flag of ${data.name.common}`} />
-              </div>
-              <div className='country-name'>{data.name.common}</div>
+    <div className="App">
+      <h1>Countries Search</h1>
+      <input
+        type="text"
+        placeholder="Search country..."
+        value={searchTerm}
+        onChange={handleSearch}
+      />
+      <div className="countries-grid">
+        {filteredCountries.map((country) => (
+          <div key={country.name.common} className="country-card">
+            <img src={country.flags.png} alt={`Flag of ${country.name.common}`} />
+            <p>{country.name.common}</p>
           </div>
-        )}
+        ))}
       </div>
     </div>
   );
-}
+};
 
 export default App;
