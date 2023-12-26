@@ -47,10 +47,8 @@ function App() {
       <div className='container'>
         {flags.map((data, idx) =>
           <div key={idx} className='card'>
-            <div>
               <img className='image' src={data.flags.png} alt={`Flag of ${data.name.common}`} />
               <div className='country-name'>{data.name.common}</div>
-            </div>
           </div>
         )}
       </div>
