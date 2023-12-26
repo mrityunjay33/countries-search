@@ -41,7 +41,7 @@ const App = () => {
       />
       <div className="countries-grid">
         {filteredCountries.map((country) => (
-          <div key={country.name.common} className="country-card">
+          <div key={country.name.common} className="country-card" style={{ flexDirection: 'column' }}>
             <img src={country.flags.png} alt={`Flag of ${country.name.common}`} />
             <p>{country.name.common}</p>
           </div>
