@@ -1,31 +1,40 @@
-*{
+/* App.css */
+
+.App {
   text-align: center;
+  padding: 20px;
 }
-.container{
+
+input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.countries-grid {
   display: flex;
-  justify-content: center;
   flex-wrap: wrap;
-  margin: 50px;
+  justify-content: space-around;
 }
-.card{
-  border: 1px solid black;
-  border-radius: 6px;
-  height: 150px;
-  width: 150px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin: 3px;
-  
+
+.country-card {
+  width: 200px;
+  margin-bottom: 20px;
+  text-align: center;
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 5px;
 }
-.image{
-  height: 100px;
-  width: 100px;
+
+.country-card img {
+  width: 80px;
+  height: 50px;
+  margin-bottom: 10px;
 }
-input{
-  width: 800px;
-  height: 30px;
-  margin-top: 20px;
-  text-align: left;
+
+.country-card p {
+  font-weight: bold;
+  margin: 0;
 }
